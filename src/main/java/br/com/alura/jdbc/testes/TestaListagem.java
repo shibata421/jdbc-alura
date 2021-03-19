@@ -1,9 +1,11 @@
-package br.com.alura.jdbc;
+package br.com.alura.jdbc.testes;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import br.com.alura.jdbc.factory.ConnectionFactory;
 
 public class TestaListagem {
 
@@ -11,7 +13,7 @@ public class TestaListagem {
 
 		String sql = "SELECT id, nome, descricao FROM produto";
 		
-		try (Connection connection = new ConnectionFactory().recuparaConexao();
+		try (Connection connection = ConnectionFactory.getInstancia().recuparaConexao();
 			 PreparedStatement stm = connection.prepareStatement(sql);) 	
 		{
 			stm.execute();
